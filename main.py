@@ -5,10 +5,18 @@ data = pandas.read_csv("./nato_phonetic_alphabet.csv")
 #convert dataframe to dictionary
 nato_alphabet = {row.letter: row.code for (index, row) in data.iterrows()}
 
-#ask for input
-print(".:::Welcome To Nato Alphabet Helper:::.")
-name = input("Enter a word: ").upper()
 
+print(".:::Welcome To Nato Alphabet Helper:::.")
+
+should_continue = True
+
+while should_continue:
+    try:
+        name = input("Enter a word: ").upper()
+        result = [nato_alphabet[letter] for letter in name]
+        should_continue = False 
+    except KeyError:
+        print("Sorry, You can only enter letters. Try Again!")
+        
 #print the result
-result = [nato_alphabet[letter] for letter in name]
 print(result)
